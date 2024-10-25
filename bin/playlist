@@ -1,5 +1,5 @@
 #!/bin/bash -u
-# Concatenates all the songs in one of my plaintext playlists (https://github.com/seanbreckenridge/plaintext-playlist)
+# Concatenates all the songs in one of my plaintext playlists (https://github.com/purarue/plaintext-playlist)
 # and syncs the one file to my server.
 #
 # I often use this to sync a playlist Im listening to before leaving the house

@@ -19,7 +19,7 @@ gb-comments-pretty() {
 		glow -
 }
 # print/select open shortened urls
-# https://github.com/seanbreckenridge/no-db-shorturl
+# https://github.com/purarue/no-db-shorturl
 alias shorturls="ssh vultr 'ls shorturls'"
 alias shz="shorturls | fzf | sed -e 's|^|https://sean.fish/s/|' | tee /dev/tty | clipcopy"
 remsync-html-from-stdin() {

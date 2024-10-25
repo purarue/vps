@@ -1,6 +1,6 @@
 #!/bin/bash
 # shorten <url> [path]
-# uses my URL shortener (https://github.com/seanbreckenridge/no-db-shorturl)
+# uses my URL shortener (https://github.com/purarue/no-db-shorturl)
 # to shorten a URL to some random string
 # if 'path' (second argument) isn't provided,
 # the server generates a random hash

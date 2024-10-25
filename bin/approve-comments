@@ -2,7 +2,7 @@
 # run from my computer to approve guest book comments at https://sean.fish/#
 # specify one of --approve-comments, --review-comments, --print-count or --print-new-comments to this script
 # defaults to --approve-comments
-# see https://github.com/seanbreckenridge/glue/blob/master/production_server
+# see https://github.com/purarue/glue/blob/master/production_server
 
 set -e
 set -o pipefail

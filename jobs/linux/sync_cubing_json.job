@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Use https://github.com/seanbreckenridge/wca_userinfo to update
-# window on https://github.com/seanbreckenridge/glue
+# Use https://github.com/purarue/wca_userinfo to update
+# window on https://github.com/purarue/glue
 
 wait-for-internet -q --timeout "${WFI_TIMEOUT:-10}" || exit 0
 

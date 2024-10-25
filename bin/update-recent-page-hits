@@ -5,7 +5,7 @@ set -o pipefail
 main() {
 	data="$(curl -sL 'https://sean.fish/api/page_hit/7' | jq)" || return $?
 	count="$(echo "$data" | jq -r '.count')"
-	# https://github.com/seanbreckenridge/is-integer
+	# https://github.com/purarue/is-integer
 	if is-integer "$count" >/dev/null; then
 		echo "$data" >"$HOME/.cache/recent_page_hits.json"
 	fi

@@ -57,12 +57,12 @@ SUNS="${BUILD_DIR}/sun-in-the-corner-of-the-page"
 GEOCITIES="${BUILD_DIR}/geocities"
 
 # clone dirs
-reclone_dir "https://github.com/seanbreckenridge/xqc-dvd" "$DVD_DIR"
-reclone_dir "https://github.com/seanbreckenridge/xkcd-favorites" "$XKCD_DIR"
-reclone_dir "https://github.com/seanbreckenridge/animeshorts" "$ANIMESHORTS_DIR"
-reclone_dir "https://github.com/seanbreckenridge/glue_geocities" "$GEOCITIES"
-reclone_dir "git@github.com:seanbreckenridge/back-arrow-script.git" "$BACK_ARROW_DIR"
-reclone_dir "https://github.com/seanbreckenridge/sun-in-the-corner-of-the-page" "$SUNS"
+reclone_dir "https://github.com/purarue/xqc-dvd" "$DVD_DIR"
+reclone_dir "https://github.com/purarue/xkcd-favorites" "$XKCD_DIR"
+reclone_dir "https://github.com/purarue/animeshorts" "$ANIMESHORTS_DIR"
+reclone_dir "https://github.com/purarue/glue_geocities" "$GEOCITIES"
+reclone_dir "git@github.com:purarue/back-arrow-script.git" "$BACK_ARROW_DIR"
+reclone_dir "https://github.com/purarue/sun-in-the-corner-of-the-page" "$SUNS"
 
 ## Build each Site
 
@@ -137,9 +137,9 @@ set -x
 ## generate nicer errors
 rm -rf /tmp/error_html
 mkdir -p /tmp/error_html
-darker_errors -output-dir /tmp/error_html 'ERROR_TITLE:sean - STATUS_MSG' '502:ERROR_HEAD:<meta http-equiv="refresh" content="5">' '502:ERROR_MSG:<p>This page is currently being updated...<br /> This should be fixed in in a few seconds...</p>'
+darker_errors -output-dir /tmp/error_html 'ERROR_TITLE:purarue - STATUS_MSG' '502:ERROR_HEAD:<meta http-equiv="refresh" content="5">' '502:ERROR_MSG:<p>This page is currently being updated...<br /> This should be fixed in in a few seconds...</p>'
 cp /tmp/error_html/502.html "${DOCUMENT_ROOT}"
 
-# requires me to to mark error_page for each request, see https://github.com/seanbreckenridge/darker_errors
+# requires me to to mark error_page for each request, see https://github.com/purarue/darker_errors
 cd "$DOCUMENT_ROOT" || exit $?
-darker_errors 'ERROR_TITLE:sean - STATUS_MSG'
+darker_errors 'ERROR_TITLE:purarue - STATUS_MSG'

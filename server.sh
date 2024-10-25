@@ -1,7 +1,7 @@
 #!/bin/bash
 # server-specific config/aliases
 # sourced in ~/.bash_ext (which is sourced in ~/.bashrc)
-# (structure setup by https://github.com/seanbreckenridge/bootstrap)
+# (structure setup by https://github.com/purarue/bootstrap)
 
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 	eval "$(ssh-agent)"

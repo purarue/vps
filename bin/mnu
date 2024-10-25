@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 # updates the mnu spreadsheet
-# https://github.com/seanbreckenridge/mnu_gsheets
+# https://github.com/purarue/mnu_gsheets
 
 set -e
 

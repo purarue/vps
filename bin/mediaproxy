@@ -23,7 +23,7 @@ readonly BASE_URL="https://sean.fish/m"
 
 # use a wordlist to generate a readable link
 readonly WORDLIST="${HOME}/.local/share/wordlist.txt"
-[[ ! -r "${WORDLIST}" ]] && curl --silent "https://gist.githubusercontent.com/seanbreckenridge/603242562a59264f6afe8a3056bf6932/raw/98d35708fa344717d8eee15d11987de6c8e26d7d/1-1000.txt" >"$WORDLIST"
+[[ ! -r "${WORDLIST}" ]] && curl --silent "https://gist.githubusercontent.com/purarue/603242562a59264f6afe8a3056bf6932/raw/98d35708fa344717d8eee15d11987de6c8e26d7d/1-1000.txt" >"$WORDLIST"
 
 # (999 * 998) possible URLs
 random_readable_url() {
@@ -98,5 +98,5 @@ set +e
 readonly PUBLIC_URL="${BASE_URL}/${filename}.${extension}"
 printf '[mediaproxy] %s\n' "$PUBLIC_URL"
 printf '%s' "$PUBLIC_URL" | clipcopy
-# https://github.com/seanbreckenridge/seanb-utils
+# https://github.com/purarue/pura-utils
 notify "mediaproxy" "Copied mirror link to clipboard."

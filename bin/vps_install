@@ -100,19 +100,19 @@ mkdir_if_not_exists "$HOME/.credentials"
 
 cd_or_exit "${CODE}"
 
-clone_if_not_exists "git@github.com:seanbreckenridge/mal-id-cache.git" "$MID_CACHE_REPO"
-clone_if_not_exists "git@github.com:seanbreckenridge/mal-notify-bot.git" "$NOTIFY_BOT"
-clone_if_not_exists "git@github.com:seanbreckenridge/discord-countdown-bot.git" "$COUNTDOWN_BOT"
-clone_if_not_exists "git@github.com:seanbreckenridge/exobrain.git" "$EXOBRAIN"
-clone_if_not_exists "https://github.com/seanbreckenridge/mal-id-cache" "$NOTIFY_BOT/mal-id-cache"
-clone_if_not_exists "git@github.com:seanbreckenridge/glue.git" "$GLUE"
-clone_if_not_exists "git@github.com:seanbreckenridge/mnu_gsheets.git" "$MNU_GSHEETS"
+clone_if_not_exists "git@github.com:purarue/mal-id-cache.git" "$MID_CACHE_REPO"
+clone_if_not_exists "git@github.com:purarue/mal-notify-bot.git" "$NOTIFY_BOT"
+clone_if_not_exists "git@github.com:purarue/discord-countdown-bot.git" "$COUNTDOWN_BOT"
+clone_if_not_exists "git@github.com:purarue/exobrain.git" "$EXOBRAIN"
+clone_if_not_exists "https://github.com/purarue/mal-id-cache" "$NOTIFY_BOT/mal-id-cache"
+clone_if_not_exists "git@github.com:purarue/glue.git" "$GLUE"
+clone_if_not_exists "git@github.com:purarue/mnu_gsheets.git" "$MNU_GSHEETS"
 clone_if_not_exists "git@github.com:Hiyori-API/checker_mal.git" "$CHECKER_MAL"
-clone_if_not_exists "git@github.com:seanbreckenridge/projects.git" "$PROJECTS"
-clone_if_not_exists "git@github.com:seanbreckenridge/my_feed.git" "$MY_FEED"
-clone_if_not_exists "git@github.com:seanbreckenridge/dbsentinel.git" "$DBSENTINEL"
-clone_if_not_exists "git@github.com:seanbreckenridge/currently_listening.git" "$CURRENTLY_LISTENING"
-clone_if_not_exists "git@github.com:seanbreckenridge/filmswap.git" "$FILMSWAP"
+clone_if_not_exists "git@github.com:purarue/projects.git" "$PROJECTS"
+clone_if_not_exists "git@github.com:purarue/my_feed.git" "$MY_FEED"
+clone_if_not_exists "git@github.com:purarue/dbsentinel.git" "$DBSENTINEL"
+clone_if_not_exists "git@github.com:purarue/currently_listening.git" "$CURRENTLY_LISTENING"
+clone_if_not_exists "git@github.com:purarue/filmswap.git" "$FILMSWAP"
 
 expect_file "$NOTIFY_BOT/token.yaml"
 expect_file "$NOTIFY_BOT/old"
@@ -181,19 +181,19 @@ mix local.hex --force
 mix local.rebar --force
 
 # generate a nicer error 502 error page
-go install -v "github.com/seanbreckenridge/darker_errors@latest"
+go install -v "github.com/purarue/darker_errors@latest"
 
 # my url shortener URLs
-go install -v "github.com/seanbreckenridge/no-db-shorturl@latest"
+go install -v "github.com/purarue/no-db-shorturl@latest"
 
 # server that serves my dotfiles
 readonly LOCAL_DOTFILES="$HOME/.dotfiles"
 readonly LOCAL_UTILS="$HOME/.utils"
-clone_if_not_exists "https://github.com/seanbreckenridge/dotfiles.git" "$LOCAL_DOTFILES"
-clone_if_not_exists "https://github.com/seanbreckenridge/seanb-utils.git" "$LOCAL_UTILS"
+clone_if_not_exists "https://github.com/purarue/dotfiles.git" "$LOCAL_DOTFILES"
+clone_if_not_exists "https://github.com/purarue/pura-utils.git" "$LOCAL_UTILS"
 
-go install -v "github.com/seanbreckenridge/subpath-serve@latest"
-go install -v "github.com/seanbreckenridge/server_clipboard/cmd/server_clipboard@latest"
+go install -v "github.com/purarue/subpath-serve@latest"
+go install -v "github.com/purarue/server_clipboard/cmd/server_clipboard@latest"
 
 # setup mal id cache
 cd_or_exit "$MID_CACHE_REPO"
@@ -211,7 +211,7 @@ python3.11 -m pipenv --python "$(command -v python3.10)"
 python3.11 -m pipenv install
 
 # install superhooks-discord
-python3.11 -m pip install --user git+https://github.com/seanbreckenridge/superhooks
+python3.11 -m pip install --user git+https://github.com/purarue/superhooks
 
 # nginx logs
 groups | grep -q "adm" || sudo usermod -a -G adm "$(whoami)"

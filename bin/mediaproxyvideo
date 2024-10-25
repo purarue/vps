@@ -1,6 +1,6 @@
 #!/bin/bash
 # A rofi GUI mediaproxy wrapper to specify format for proxying a video
-# copied from my mpvf script: https://github.com/seanbreckenridge/mpvf.git
+# copied from my mpvf script: https://github.com/purarue/mpvf.git
 
 cd "${REPOS}/vps" || exit $?
 
