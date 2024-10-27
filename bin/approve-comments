@@ -1,5 +1,5 @@
 #!/bin/bash
-# run from my computer to approve guest book comments at https://sean.fish/#
+# run from my computer to approve guest book comments at https://purarue.xyz/#
 # specify one of --approve-comments, --review-comments, --print-count or --print-new-comments to this script
 # defaults to --approve-comments
 # see https://github.com/purarue/glue/blob/master/production_server

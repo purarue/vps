@@ -9,8 +9,8 @@ alias remsync-public='REMSYNC_PUBLIC=1 remsync' # to push to /p/ (public index)
 alias remsync-ranger='ranger "${XDG_DOCUMENTS_DIR}/remsync" && remsync'
 alias remsync-public-ranger='ranger "${HOME}/Files/remsync_public" && remsync-public'
 alias print-new-comments='approve-comments --print-new-comments'
-alias page-hits="curl -s 'https://sean.fish/api/page_hit' | jq '.count'"
-alias gb-comments="curl 'https://sean.fish/api/gb_comment' | jq 'reverse'"
+alias page-hits="curl -s 'https://purarue.xyz/api/page_hit' | jq '.count'"
+alias gb-comments="curl 'https://purarue.xyz/api/gb_comment' | jq 'reverse'"
 gb-comments-pretty() {
 	gb-comments |
 		jq '.[]' -c |
@@ -21,10 +21,10 @@ gb-comments-pretty() {
 # print/select open shortened urls
 # https://github.com/purarue/no-db-shorturl
 alias shorturls="ssh vultr 'ls shorturls'"
-alias shz="shorturls | fzf | sed -e 's|^|https://sean.fish/s/|' | tee /dev/tty | clipcopy"
+alias shz="shorturls | fzf | sed -e 's|^|https://purarue.xyz/s/|' | tee /dev/tty | clipcopy"
 remsync-html-from-stdin() {
 	local tmpf
-	# https://sean.fish/d/pipehtml?redirect
+	# https://purarue.xyz/d/pipehtml?redirect
 	tmpf="$(pipehtml "$*")"
 	remsync "$tmpf"
 	rm -f "$tmpf"

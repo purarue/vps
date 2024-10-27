@@ -17,7 +17,7 @@
 readonly SYNC_USER="sean"
 readonly SYNC_KEYFILE="${HOME}/.ssh/vultr" # ssh keyfile
 readonly TO_SERVER=140.82.50.43
-readonly BASE_URL="https://sean.fish/m"
+readonly BASE_URL="https://purarue.xyz/m"
 
 ######### SETUP
 

@@ -76,8 +76,8 @@ mkdir_if_not_exists "$BACKUP_COUNTDOWN"
 mkdir_if_not_exists "$BACKUP_NOTIFY"
 
 # save data from my website
-curl -s 'https://sean.fish/api/gb_comment' >"$BACKUP_DIR/gb_comment.json"
-curl -s 'https://sean.fish/api/page_hit' >"$BACKUP_DIR/page_hit.json"
+curl -s 'https://purarue.xyz/api/gb_comment' >"$BACKUP_DIR/gb_comment.json"
+curl -s 'https://purarue.xyz/api/page_hit' >"$BACKUP_DIR/page_hit.json"
 
 expect_file_and_copy "$NOTIFY_BOT/token.yaml" "$BACKUP_NOTIFY"
 expect_file_and_copy "$NOTIFY_BOT/old" "$BACKUP_NOTIFY"

@@ -3,6 +3,6 @@
 wait-for-internet -q --timeout "${WFI_TIMEOUT:-10}" || exit 0
 
 evry 30 minutes -recent_page_hits && {
-	printlog 'recent_page_hits:getting recent page hit count from sean.fish'
+	printlog 'recent_page_hits:getting recent page hit count from purarue.xyz'
 	update-recent-page-hits
 }

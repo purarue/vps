@@ -6,11 +6,11 @@
 # the server generates a random hash
 # e.g.
 # shorten "https://wiki.archlinux.org/index.php/File_opener" open
-# would return "https://sean.fish/s/open"
+# would return "https://purarue.xyz/s/open"
 # which now redirects to the archwiki link
 
 # handle user input
-readonly UPLOAD_TO="https://sean.fish/s/"
+readonly UPLOAD_TO="https://purarue.xyz/s/"
 readonly SHORTURL_TOKEN="${SHORTURL_TOKEN:?No shorturl token set}"
 readonly URL="${1:?No url provided to shorten}"
 readonly HASH="$2" # is fine if this is empty

@@ -29,5 +29,5 @@ cp -p "$image" "${XDG_DOCUMENTS_DIR}/remsync/i/${name}" || {
 }
 remsync || exit 1
 # create URL
-url="https://sean.fish/f/i/${name}"
+url="https://purarue.xyz/f/i/${name}"
 printf '%s' "$url" | clp

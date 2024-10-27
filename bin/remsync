@@ -54,7 +54,7 @@ readonly SYNC_USER="sean"
 readonly SSH_TO='vultr' # setup in ~/.ssh/config
 declare TO_DIR="/home/${SYNC_USER}/f/"
 [[ -n "$REMSYNC_PUBLIC" ]] && TO_DIR="/home/${SYNC_USER}/p/"
-readonly BASE_URL="https://sean.fish"
+readonly BASE_URL="https://purarue.xyz"
 readonly TO_DIR
 
 # local information
