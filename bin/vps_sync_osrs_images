@@ -30,4 +30,4 @@ while read -r line; do
 done <<<"$(fd . runelite_screenshots -e png -t f)"
 
 # sync from ~/.cache/runelite_screenshots to remote server
-exec rsync -Pavhz --checksum "$HOME/.cache/runelite_screenshots" vultr:./static_files >/dev/null
+exec rsync -Pavhz --checksum "$HOME/.cache/runelite_screenshots" "$HOME/Files/remsync_public" >/dev/null

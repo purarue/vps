@@ -2,7 +2,7 @@
 
 wait-for-internet -q --timeout "${WFI_TIMEOUT:-10}" || exit 0
 
-evry 30 minutes -check-fish-server && {
+evry 30 minutes -check-server && {
 	printlog 'checking purarue.xyz...'
 	HTTP_CODE="$(curl -L -so /dev/null -w "%{http_code}" 'https://purarue.xyz')"
 	[[ "$HTTP_CODE" != "200" ]] && send-error "purarue.xyz is down"
