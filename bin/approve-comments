@@ -7,10 +7,22 @@
 set -e
 set -o pipefail
 
+ssh_with_retry() {
+	local count=1
+	# shellcheck disable=SC2029
+	while ! ssh vultr "$@"; do
+		printf "Retrying (%d)...\n" "$count"
+		sleep 1
+		((count++))
+		if ((count > 5)); then
+			return 1
+		fi
+	done
+}
+
 declare FLAG COMMAND
 FLAG="${1:---approve-comments}"
 [[ "$FLAG" == "--approve-comments" ]] && rm -f "$(evry location -guestbook_comments)"
 COMMAND="source ./vps/server.sh; cd ./code/glue/ && renv ./production_server $FLAG"
 printf "Running: '%s'\n" "${COMMAND}" 1>&2
-# shellcheck disable=SC2029
-exec ssh vultr "$COMMAND"
+ssh_with_retry "$COMMAND" || return $?
