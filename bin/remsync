@@ -88,18 +88,11 @@ fi
 rsync_args=(--chmod='D0755,F644' --archive --verbose --human-readable --partial --progress)
 [[ -z "$REMSYNC_PUBLIC" || -n "$REMSYNC_DELETE" ]] && rsync_args+=("--delete-before")
 rsync_args+=(-e 'ssh' "$FROM_DIR" "${SSH_TO}:${TO_DIR}")
-echo 'Running: rsync' "${rsync_args[@]}"
-rsync "${rsync_args[@]}"
+echo 'Running: rsync' "${rsync_args[@]}" >&2
+rsync "${rsync_args[@]}" || exit $?
 
 split
 
-# print how much of the server is currently in use
-# shellcheck disable=SC2029
-ssh "${SSH_TO}" \
-	"df -h ~ ;\
-printf \"remsync size: \" ;\
-du -h --summarize \"${TO_DIR}\" | cut -f1;\
-"
 # print urls of synced files
 if (($# > 0)); then
 	split
