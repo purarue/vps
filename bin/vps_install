@@ -197,8 +197,8 @@ go install -v "github.com/purarue/server_clipboard/cmd/server_clipboard@latest"
 
 # setup mal id cache
 cd_or_exit "$MID_CACHE_REPO"
-git config user.email "ssbreckenridge@icloud.com"
-git config user.name "[bot]sean"
+git config user.email "72600123+bot-pura@users.noreply.github.com"
+git config user.name "bot-pura"
 
 # setup notify bot
 cd_or_exit "$NOTIFY_BOT"
