@@ -8,6 +8,7 @@ evry 15 minutes -guestbook_comments && {
 
 	get_count() {
 		local COUNT_LINE
+		# the /1 here is not important, its just to trigger the :list endpoint in phoenix
 		COUNT_LINE="$(curl -sL 'https://purarue.xyz/api/gb_comment/1' | jq -r .count)" || return $?
 		echo "$COUNT_LINE"
 	}
