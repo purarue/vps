@@ -37,6 +37,7 @@ require git
 require elm
 require make
 require python3.11
+require python3.12
 require realpath
 require pipenv
 require html-minifier # npm install -g html-minifier
@@ -115,7 +116,7 @@ move_to_document_root "$XKCD_DIR"
 ## ANIMESHORTS ############
 
 cd "$ANIMESHORTS_DIR" || exit $?
-python3.11 -m pipenv --python "$(command -v python3.10)"
+python3.11 -m pipenv --python "$(command -v python3.12)"
 python3.11 -m pipenv install
 "$ANIMESHORTS_DIR"/generate
 python3.11 -m pipenv --rm
