@@ -16,7 +16,7 @@ extension="$(get-extension "$name")" || {
 	echo "failed to get extension for $name" >&2
 	exit 1
 }
-# generate a random filename, make sure it doesnt already exist
+# generate a random filename, make sure it doesn't already exist
 name="$(genpasswd -rsym -rnum).${extension}"
 while [[ -e "${XDG_DOCUMENTS_DIR}/remsync/i/${name}" ]]; do
 	echo 'file already exists, generating new name' >&2
