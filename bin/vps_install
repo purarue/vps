@@ -113,6 +113,7 @@ clone_if_not_exists "git@github.com:purarue/my_feed.git" "$MY_FEED"
 clone_if_not_exists "git@github.com:purarue/dbsentinel.git" "$DBSENTINEL"
 clone_if_not_exists "git@github.com:purarue/currently_listening.git" "$CURRENTLY_LISTENING"
 clone_if_not_exists "git@github.com:purarue/filmswap.git" "$FILMSWAP"
+clone_if_not_exists "git@github.com:purarue/ttally_server.git" "$FILMSWAP"
 
 expect_file "$NOTIFY_BOT/token.yaml"
 expect_file "$NOTIFY_BOT/old"
@@ -138,6 +139,7 @@ mkdir_if_not_exists "$DBSENTINEL_LOGS"
 mkdir_if_not_exists "$CURRENTLY_LOGS"
 mkdir_if_not_exists "$FILMSWAP_LOGS"
 mkdir_if_not_exists "$TRACK_LOGS"
+mkdir_if_not_exists "$TTALLY_LOGS"
 
 set +u
 
