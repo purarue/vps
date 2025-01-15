@@ -38,6 +38,9 @@ export GOBIN=$GOPATH/bin
 # update path
 # include pyenv 3.11 bin at the front of the path so calling python/pip/python3 uses that
 export PATH="/usr/sbin:$HOME/.pyenv/versions/3.11.3/bin:$HOME/.pyenv/bin:$HOME/.cargo/bin:$HOME/vps/bin:$HOME/vps:$HOME/.local/bin:$NPM_CONFIG_PREFIX/bin:$GOBIN:$PATH"
+if [[ -e "$HOME/.ttally_sync/repos" ]]; then
+	export PATH="$HOME/.ttally_sync/repos/ttally/bin:$HOME/.ttally_sync/repos/personal/bin:$PATH"
+fi
 
 # use asdf for version management
 . $HOME/.asdf/asdf.sh

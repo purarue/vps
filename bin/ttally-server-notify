@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+ensure_exists() {
+	if [[ ! -e "${1?:must pass path}" ]]; then
+		printf 'Expected path %s, does not exist\n' "$1" >&2
+		exit 1
+	fi
+}
+clone_if_not_exists() {
+	if [[ ! -d "$2" ]]; then
+		git clone "$1" "$2"
+	fi
+}
+
+SYNC_DIR="${HOME}/.ttally_sync"
+export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
+export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
+
+setup_repos() {
+	mkdir -p "$TTALLY/repos"
+	clone_if_not_exists https://github.com/purarue/ttally "$TTALLY/repos/ttally"
+	clone_if_not_exists https://github.com/purarue/reminder-sink "$TTALLY/repos/reminder-sink"
+	clone_if_not_exists git@/github.com:purarue/personal "$TTALLY/repos/personal"
+}
+
+ensure_exists "$SYNC_DIR"
+ensure_exists "$TTALLY_DATA_DIR"
+ensure_exists "$REMINDER_SINK_SILENT_FILE"
+setup_repos
+
+# shellcheck disable=1091
+[[ -z "$TTALLY_NTFY_TOPIC" && -e "$SYNC_DIR/.env" ]] && . "$SYNC_DIR/.env"
+
+if [[ -z "$TTALLY_NTFY_TOPIC" ]]; then
+	echo 'TTALLY_NTFY_TOPIC is unset' >&2
+	exit 1
+fi
+
+if [[ -z "$TTALLY_FILTERS" ]]; then
+	echo 'TTALLY_FILTERS is unset' >&2
+	exit 1
+fi
+
+while true; do
+	DUMP_QUERIES=1 ttally-when-queries | TTALLY_NTFY_TOPIC="$TTALLY_NTFY_TOPIC" ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
+	sleep 2m
+done

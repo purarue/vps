@@ -113,7 +113,6 @@ clone_if_not_exists "git@github.com:purarue/my_feed.git" "$MY_FEED"
 clone_if_not_exists "git@github.com:purarue/dbsentinel.git" "$DBSENTINEL"
 clone_if_not_exists "git@github.com:purarue/currently_listening.git" "$CURRENTLY_LISTENING"
 clone_if_not_exists "git@github.com:purarue/filmswap.git" "$FILMSWAP"
-clone_if_not_exists "git@github.com:purarue/ttally_server.git" "$FILMSWAP"
 
 expect_file "$NOTIFY_BOT/token.yaml"
 expect_file "$NOTIFY_BOT/old"
