@@ -51,7 +51,7 @@ if [[ -z "${SELF_TYPES_FILE:-}" ]]; then
 	exit 1
 fi
 
-[[ ! -e "$HOME/.config/ttally.py" && -e "$HOME/.dotfiles/.config/ttally.py" ]] && ln "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
+cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
 while true; do
 	DUMP_QUERIES=1 ttally-when-queries | TTALLY_NTFY_TOPIC="$TTALLY_NTFY_TOPIC" ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
