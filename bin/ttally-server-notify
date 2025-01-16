@@ -22,10 +22,10 @@ export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
 export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
 
 setup_repos() {
-	mkdir -p "$TTALLY/repos"
-	clone_if_not_exists https://github.com/purarue/ttally "$TTALLY/repos/ttally"
-	clone_if_not_exists https://github.com/purarue/reminder-sink "$TTALLY/repos/reminder-sink"
-	clone_if_not_exists git@/github.com:purarue/personal "$TTALLY/repos/personal"
+	mkdir -p "$SYNC_DIR/repos"
+	clone_if_not_exists https://github.com/purarue/ttally "$SYNC_DIR/repos/ttally"
+	clone_if_not_exists https://github.com/purarue/reminder-sink "$SYNC_DIR/repos/reminder-sink"
+	clone_if_not_exists git@/github.com:purarue/personal "$SYNC_DIR/repos/personal"
 }
 
 ensure_exists "$SYNC_DIR"
