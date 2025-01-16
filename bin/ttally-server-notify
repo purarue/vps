@@ -51,9 +51,11 @@ if [[ -z "${SELF_TYPES_FILE:-}" ]]; then
 	exit 1
 fi
 
+export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
+
 cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
 while true; do
-	DUMP_QUERIES=1 ttally-when-queries | TTALLY_NTFY_TOPIC="$TTALLY_NTFY_TOPIC" ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
+	DUMP_QUERIES=1 ttally-when-queries | ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
 	sleep 2m
 done
