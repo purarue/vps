@@ -18,13 +18,12 @@ cmd_with_retry() {
 	done
 }
 
-SYNC_FROM_TTALLY="$TTALLY_DATA_DIR"
-SYNC_TO_TTALLY=vultr:'~/.ttally_sync/ttally'
-
-SYNC_FROM_REMINDER_SILENT="$HPIDATA/reminder-sink-silent.txt"
-SYNC_TO_REMINDER_SILENT=vultr:'~/.ttally_sync/silent.txt'
-
 declare -a rsync_flags=(--archive --verbose --compress --update -e ssh)
 
-cmd_with_retry rsync "${rsync_flags[@]}" "$SYNC_FROM_TTALLY" "$SYNC_TO_TTALLY" || exit $?
-cmd_with_retry rsync "${rsync_flags[@]}" "$SYNC_FROM_REMINDER_SILENT" "$SYNC_TO_REMINDER_SILENT"
+run_sync() {
+	cmd_with_retry rsync "${rsync_flags[@]}" "$@" || exit $?
+}
+
+run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync/ttally'
+run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally_sync/silent.txt'
+run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally_sync/.self_types.txt'

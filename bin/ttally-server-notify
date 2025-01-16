@@ -46,6 +46,11 @@ if [[ -z "${TTALLY_FILTERS:-}" ]]; then
 	exit 1
 fi
 
+if [[ -z "${SELF_TYPES_FILE:-}" ]]; then
+	echo 'SELF_TYPES_FILE is unset' >&2
+	exit 1
+fi
+
 [[ ! -e "$HOME/.config/ttally.py" && -e "$HOME/.dotfiles/.config/ttally.py" ]] && ln "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
 while true; do
