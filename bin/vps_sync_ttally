@@ -20,10 +20,16 @@ cmd_with_retry() {
 
 declare -a rsync_flags=(--archive --verbose --compress --update -e ssh)
 
+declare exit_code=0
 run_sync() {
-	cmd_with_retry rsync "${rsync_flags[@]}" "$@" || exit $?
+	cmd_with_retry rsync "${rsync_flags[@]}" "$@" || {
+		exit_code=1
+	}
 }
 
-run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync/ttally'
-run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally_sync/silent.txt'
-run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally_sync/.self_types.txt'
+run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync/ttally' &
+run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally_sync/silent.txt' &
+run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally_sync/.self_types.txt' &
+
+wait
+exit "$exit_code"
