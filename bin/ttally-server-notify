@@ -18,8 +18,6 @@ clone_if_not_exists() {
 }
 
 SYNC_DIR="${HOME}/.ttally_sync"
-export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
-export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
 
 setup_repos() {
 	mkdir -p "$SYNC_DIR/repos"
@@ -54,6 +52,11 @@ fi
 export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
 
 cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
+
+if [[ -n "$1" ]]; then
+	echo "Running $*" >&2
+	sh -c "$@" || exit $?
+fi
 
 while true; do
 	DUMP_QUERIES=1 ttally-when-queries | ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?

@@ -35,6 +35,10 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/.local/share/go
 export GOBIN=$GOPATH/bin
 
+SYNC_DIR="${HOME}/.ttally_sync"
+export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
+export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
+
 # update path
 # include pyenv 3.11 bin at the front of the path so calling python/pip/python3 uses that
 export PATH="/usr/sbin:$HOME/.pyenv/versions/3.11.3/bin:$HOME/.pyenv/bin:$HOME/.cargo/bin:$HOME/vps/bin:$HOME/vps:$HOME/.local/bin:$NPM_CONFIG_PREFIX/bin:$GOBIN:$PATH"
