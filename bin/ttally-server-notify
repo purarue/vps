@@ -50,7 +50,7 @@ export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
 
 cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
-if [[ -n "$1" ]]; then
+if [[ -n "${1:-}" ]]; then
 	echo "Running $*" >&2
 	sh -c "$@" || exit $?
 fi

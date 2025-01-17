@@ -34,7 +34,7 @@ linux*)
 esac
 
 run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally_sync/silent.txt' &
-run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync/ttally' &
+run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync' &
 
 wait
 exit "$exit_code"
