@@ -38,6 +38,7 @@ export GOBIN=$GOPATH/bin
 SYNC_DIR="${HOME}/.ttally_sync"
 export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
 export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
+export SELF_TYPES_FILE="$SYNC_DIR/.self_types.tt"
 
 # update path
 # include pyenv 3.11 bin at the front of the path so calling python/pip/python3 uses that

@@ -31,9 +31,6 @@ ensure_exists "$TTALLY_DATA_DIR"
 ensure_exists "$REMINDER_SINK_SILENT_FILE"
 setup_repos
 
-# shellcheck disable=1091
-[[ -z "${TTALLY_NTFY_TOPIC:-}" && -e "$SYNC_DIR/.env" ]] && . "$SYNC_DIR/.env"
-
 if [[ -z "${TTALLY_NTFY_TOPIC:-}" ]]; then
 	echo 'TTALLY_NTFY_TOPIC is unset' >&2
 	exit 1
