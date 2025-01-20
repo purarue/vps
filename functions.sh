@@ -32,6 +32,7 @@ remsync-html-from-stdin() {
 remsync-text-from-stdin() {
 	text2html | html-head-all | remsync-html-from-stdin "$*"
 }
+alias sy='vps_sync_ttally'
 
 __deploy() {
 	local targets
