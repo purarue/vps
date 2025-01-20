@@ -43,6 +43,9 @@ deploy() {
 	vps)
 		SKIP_LOGS=1 _deploy_ssh ./vps -
 		;;
+	ttally)
+		_deploy_ssh ./vps ttally-ntfy
+		;;
 	*)
 		if [[ -n "$1" ]]; then
 			echo "unknown deploy target: $1" >&2
