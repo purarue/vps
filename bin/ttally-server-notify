@@ -56,6 +56,6 @@ if [[ -n "${1:-}" ]]; then
 fi
 
 while true; do
-	DUMP_QUERIES=1 ttally-when-queries | ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
+	DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - --expired --filter "$TTALLY_FILTERS" || exit $?
 	sleep 2m
 done
