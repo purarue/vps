@@ -15,7 +15,7 @@ clone_if_not_exists() {
 			[[ -e "$2/setup.py" ]] && python3 -m pip install "$2"
 		}
 	fi
-	(cd "$1" && {
+	(cd "$2" && {
 		git pull || true
 	})
 }
