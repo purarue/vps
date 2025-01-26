@@ -62,6 +62,10 @@ pyenv install 3.11.3 --skip-existing
 [[ ! -e /usr/bin/python3.10 ]] && sudo ln -s "${HOME}/.pyenv/versions/3.10.2/bin/python3.10" /usr/bin/python3.10
 [[ ! -e /usr/bin/python3.11 ]] && sudo ln -s "${HOME}/.pyenv/versions/3.11.3/bin/python3.11" /usr/bin/python3.11
 
+echo 'Installing bgproc...'
+curl -sL 'https://raw.githubusercontent.com/purarue/bgproc/refs/heads/master/bgproc' >"${HOME}/.local/bin/bgproc"
+chmod +x "${HOME}/.local/bin/bgproc"
+
 require python3.10
 require python3.11
 require crontab
