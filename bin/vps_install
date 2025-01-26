@@ -142,7 +142,6 @@ mkdir_if_not_exists "$DBSENTINEL_LOGS"
 mkdir_if_not_exists "$CURRENTLY_LOGS"
 mkdir_if_not_exists "$FILMSWAP_LOGS"
 mkdir_if_not_exists "$TRACK_LOGS"
-mkdir_if_not_exists "$TTALLY_LOGS"
 
 set +u
 

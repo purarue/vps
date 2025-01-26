@@ -36,6 +36,5 @@ declare -rx DBSENTINEL_LOGS="${LOGS_BASE}/dbsentinel"
 declare -rx CURRENTLY_LOGS="${LOGS_BASE}/currently_listening"
 declare -rx FILMSWAP_LOGS="${LOGS_BASE}/filmswap"
 declare -rx TRACK_LOGS="${LOGS_BASE}/track"
-declare -rx TTALLY_LOGS="${LOGS_BASE}/ttally"
 
 declare -rx SUPERVISOR_LOGS="${LOGS_BASE}/supervisor"
