@@ -146,7 +146,7 @@ mkdir_if_not_exists "$TRACK_LOGS"
 set +u
 
 # some stuff I use in scripts
-python3.11 -m pip install -U click pyyaml toml requests pipenv virtualenv rifleman git+https://github.com/purarue/calcurse-load
+python3.11 -m pip install -U click arrow pytz pyyaml toml requests pipenv virtualenv rifleman git+https://github.com/purarue/calcurse-load
 
 # https://www.digitalocean.com/community/tutorials/how-to-set-up-basic-http-authentication-with-nginx-on-ubuntu-14-04
 if [[ ! -e /etc/nginx/.htpasswd ]]; then

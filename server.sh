@@ -47,5 +47,6 @@ if [[ -e "$HOME/.ttally/repos" ]]; then
 	export PATH="$HOME/.ttally/repos/ttally/bin:$HOME/.ttally/repos/personal/bin:$PATH"
 fi
 
+[[ -e "$HOME/.secrets.sh" ]] && . "$HOME/.secrets.sh"
 # use asdf for version management
-. $HOME/.asdf/asdf.sh
+[[ -e $HOME/.asdf/asdf.sh ]] && . $HOME/.asdf/asdf.sh
