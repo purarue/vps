@@ -35,7 +35,7 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/.local/share/go
 export GOBIN=$GOPATH/bin
 
-SYNC_DIR="${HOME}/.ttally_sync"
+SYNC_DIR="${HOME}/.ttally"
 export TTALLY_DATA_DIR="$SYNC_DIR/ttally"
 export REMINDER_SINK_SILENT_FILE="$SYNC_DIR/silent.txt"
 export SELF_TYPES_FILE="$SYNC_DIR/.self_types.txt"
@@ -43,8 +43,8 @@ export SELF_TYPES_FILE="$SYNC_DIR/.self_types.txt"
 # update path
 # include pyenv 3.11 bin at the front of the path so calling python/pip/python3 uses that
 export PATH="/usr/sbin:$HOME/.pyenv/versions/3.11.3/bin:$HOME/.pyenv/bin:$HOME/.cargo/bin:$HOME/vps/bin:$HOME/vps:$HOME/.local/bin:$NPM_CONFIG_PREFIX/bin:$GOBIN:$PATH"
-if [[ -e "$HOME/.ttally_sync/repos" ]]; then
-	export PATH="$HOME/.ttally_sync/repos/ttally/bin:$HOME/.ttally_sync/repos/personal/bin:$PATH"
+if [[ -e "$HOME/.ttally/repos" ]]; then
+	export PATH="$HOME/.ttally/repos/ttally/bin:$HOME/.ttally/repos/personal/bin:$PATH"
 fi
 
 # use asdf for version management

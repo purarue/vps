@@ -44,7 +44,7 @@ deploy() {
 		SKIP_LOGS=1 _deploy_ssh ./vps -
 		;;
 	ttally)
-		_deploy_ssh ./vps ttally-ntfy
+		_deploy_ssh ./vps bgproc - 'cd ~/.ttally && renv ttally-server-notify -u'
 		;;
 	*)
 		if [[ -n "$1" ]]; then

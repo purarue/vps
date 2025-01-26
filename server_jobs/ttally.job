@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+wait-for-internet -q --timeout "${WFI_TIMEOUT:-10}" || exit 0
+
+evry 5 minutes -ttally-ntfy && {
+	printlog 'ttally-ntfy:running notification check...'
+	(cd ~/.ttally && renv ttally-server-notify)
+}

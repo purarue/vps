@@ -29,12 +29,12 @@ run_sync() {
 
 case "${ON_OS:-$(on_machine)}" in
 linux*)
-	run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally_sync/.self_types.txt' &
+	run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally/.self_types.txt' &
 	;;
 esac
 
-run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally_sync/silent.txt' &
-run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally_sync' &
+run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally/silent.txt' &
+run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally' &
 
 wait
 exit "$exit_code"

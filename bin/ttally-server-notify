@@ -20,7 +20,7 @@ clone_if_not_exists() {
 	})
 }
 
-SYNC_DIR="${HOME}/.ttally_sync"
+SYNC_DIR="${HOME}/.ttally"
 
 setup_repos() {
 	mkdir -p "$SYNC_DIR/repos"
@@ -32,7 +32,6 @@ setup_repos() {
 ensure_exists "$SYNC_DIR"
 ensure_exists "$TTALLY_DATA_DIR"
 ensure_exists "$REMINDER_SINK_SILENT_FILE"
-setup_repos
 
 if [[ -z "${TTALLY_NTFY_TOPIC:-}" ]]; then
 	echo 'TTALLY_NTFY_TOPIC is unset' >&2
@@ -53,12 +52,16 @@ export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
 
 cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
-if [[ -n "${1:-}" ]]; then
-	echo "Running $*" >&2
-	sh -c "$@" || exit $?
-fi
-
-while true; do
-	DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify --expired --filter "$TTALLY_FILTERS" || exit $?
-	sleep 2m
+while getopts 'u' opt; do
+	case "$opt" in
+	u)
+		setup_repos
+		echo 'Done updating repos...'
+		exit 0
+		;;
+	*) ;;
+	esac
 done
+shift "$((OPTIND - 1))"
+
+DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify --expired --filter "$TTALLY_FILTERS" || exit $?
