@@ -29,29 +29,6 @@ setup_repos() {
 	clone_if_not_exists git@github.com:purarue/personal "$SYNC_DIR/repos/personal"
 }
 
-ensure_exists "$SYNC_DIR"
-ensure_exists "$TTALLY_DATA_DIR"
-ensure_exists "$REMINDER_SINK_SILENT_FILE"
-
-if [[ -z "${TTALLY_NTFY_TOPIC:-}" ]]; then
-	echo 'TTALLY_NTFY_TOPIC is unset' >&2
-	exit 1
-fi
-
-if [[ -z "${TTALLY_FILTERS:-}" ]]; then
-	echo 'TTALLY_FILTERS is unset' >&2
-	exit 1
-fi
-
-if [[ -z "${SELF_TYPES_FILE:-}" ]]; then
-	echo 'SELF_TYPES_FILE is unset' >&2
-	exit 1
-fi
-
-export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
-
-cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
-
 while getopts 'u' opt; do
 	case "$opt" in
 	u)
@@ -64,4 +41,31 @@ while getopts 'u' opt; do
 done
 shift "$((OPTIND - 1))"
 
-DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify --expired --filter "$TTALLY_FILTERS" || exit $?
+run_notify() {
+	ensure_exists "$SYNC_DIR"
+	ensure_exists "$TTALLY_DATA_DIR"
+	ensure_exists "$REMINDER_SINK_SILENT_FILE"
+
+	if [[ -z "${TTALLY_NTFY_TOPIC:-}" ]]; then
+		echo 'TTALLY_NTFY_TOPIC is unset' >&2
+		exit 1
+	fi
+
+	if [[ -z "${TTALLY_FILTERS:-}" ]]; then
+		echo 'TTALLY_FILTERS is unset' >&2
+		exit 1
+	fi
+
+	if [[ -z "${SELF_TYPES_FILE:-}" ]]; then
+		echo 'SELF_TYPES_FILE is unset' >&2
+		exit 1
+	fi
+
+	export TTALLY_NTFY_TOPIC SELF_TYPES_FILE
+
+	cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
+
+	DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify --expired --filter "$TTALLY_FILTERS" || exit $?
+}
+
+run_notify
