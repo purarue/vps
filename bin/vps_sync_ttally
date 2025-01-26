@@ -18,7 +18,7 @@ cmd_with_retry() {
 	done
 }
 
-declare -a rsync_flags=(--archive --verbose --compress --update -e ssh)
+declare -a rsync_flags=(--archive --verbose --compress --update --exclude=".*" -e ssh)
 if [[ -n "${TTALLY_SYNC_DELETE:-}" ]]; then
 	rsync_flags+=(--delete-after)
 fi
