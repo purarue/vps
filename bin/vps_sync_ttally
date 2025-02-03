@@ -25,6 +25,10 @@ fi
 
 declare exit_code=0
 run_sync() {
+	if [[ ! -e "$1" ]]; then
+		printf '%s does not exist, skipping...\n' "$1"
+		return 0
+	fi
 	cmd_with_retry rsync "${rsync_flags[@]}" "$@" || {
 		exit_code=1
 	}
