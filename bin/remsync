@@ -47,6 +47,19 @@ split() {
 	echo "#########################"
 }
 
+cmd_with_retry() {
+	local count=1
+	# shellcheck disable=SC2029
+	while ! "$@"; do
+		printf "Retrying (%d)...\n" "$count"
+		sleep 1
+		((count++))
+		if ((count > 10)); then
+			return 1
+		fi
+	done
+}
+
 ########## CONFIGURATION
 
 # server information
@@ -89,7 +102,7 @@ rsync_args=(--chmod='D0755,F644' --archive --verbose --human-readable --partial 
 [[ -z "$REMSYNC_PUBLIC" || -n "$REMSYNC_DELETE" ]] && rsync_args+=("--delete-before")
 rsync_args+=(-e 'ssh' "$FROM_DIR" "${SSH_TO}:${TO_DIR}")
 echo 'Running: rsync' "${rsync_args[@]}" >&2
-rsync "${rsync_args[@]}" || exit $?
+cmd_with_retry rsync "${rsync_args[@]}" || exit $?
 
 split
 

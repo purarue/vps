@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # shell functions to source into my laptop environment to interact with my server
 
-alias vultr='ssh vultr'
+alias vultr='retry ssh vultr'
 alias vlogs='vultr "~/vps/logs"'
 alias vultr_logs='vultr "~/vps/logs"'
 alias remsync-public='REMSYNC_PUBLIC=1 remsync' # to push to /p/ (public index)
