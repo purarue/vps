@@ -65,6 +65,8 @@ source "${VPS_DIR}/directories"
 
 BACKUP_DIR_NAME="backup_dir"
 BACKUP_DIR="${VPS_DIR}/${BACKUP_DIR_NAME}"
+BACKUP_ENV_DIR="$BACKUP_DIR/env"
+
 BACKUP_COUNTDOWN="${BACKUP_DIR}"/countdown
 BACKUP_NOTIFY="${BACKUP_DIR}"/notify
 BACKUP_TAR_NAME="${BACKUP_DIR_NAME}.tar.gz"
@@ -74,6 +76,22 @@ delete_if_exists "$BACKUP_TAR_NAME"
 
 mkdir_if_not_exists "$BACKUP_COUNTDOWN"
 mkdir_if_not_exists "$BACKUP_NOTIFY"
+mkdir_if_not_exists "$BACKUP_ENV_DIR"
+
+declare -A env_files=(
+	["$HOME/.secrets/clipboard/.env"]="clipboard.env"
+	["$HOME/.secrets/currently_listening/.env"]="currently_listening.env"
+	["$HOME/.secrets/shorturl/.env"]="shorturl.env"
+	["$HOME/code/filmswap/.env"]="filmswap.env"
+	["$HOME/code/my_feed/backend/.env"]="my_feed_backend.env"
+	["$HOME/code/checker_mal/.env"]="checker_mal.env"
+	["$HOME/code/dbsentinel/.env"]="dbsentinel.env"
+	["$HOME/code/dbsentinel/frontend/.env"]="dbsentinel_frontend.env"
+	["$HOME/code/ttally_server/.env"]="ttally_server.env"
+	["$HOME/code/exobrain/.env"]="exobrain.env"
+	["$HOME/code/projects/.env"]="projects.env"
+	["$HOME/code/glue/.env"]="glue.env"
+)
 
 # save data from my website
 curl -s 'https://purarue.xyz/api/gb_comment' >"$BACKUP_DIR/gb_comment.json"
@@ -83,6 +101,11 @@ expect_file_and_copy "$NOTIFY_BOT/token.yaml" "$BACKUP_NOTIFY"
 expect_file_and_copy "$NOTIFY_BOT/old" "$BACKUP_NOTIFY"
 expect_file_and_copy "$NOTIFY_BOT/export.json" "$BACKUP_NOTIFY"
 expect_file_and_copy "$COUNTDOWN_BOT/token.yaml" "$BACKUP_COUNTDOWN"
+# Loop through each file and use expect_file_and_copy function
+for src in "${!env_files[@]}"; do
+	dest="$BACKUP_ENV_DIR/${env_files[$src]}"
+	expect_file_and_copy "$src" "$dest"
+done
 optional_copy "$COUNTDOWN_BOT/server.db" "$BACKUP_COUNTDOWN"
 optional_copy "$HOME/.bashrc" "$BACKUP_DIR"
 optional_copy "$HOME/.bash_ext" "$BACKUP_DIR"
