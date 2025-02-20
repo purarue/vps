@@ -5,7 +5,7 @@ set -o pipefail
 
 wait-for-internet --quiet --timeout 10 || exit $?
 
-declare -a rsync_flags=(--archive --verbose --compress --update --exclude=".*" -e ssh)
+declare -a rsync_flags=(--archive --verbose --compress --update -e ssh)
 if [[ -n "${TTALLY_SYNC_DELETE:-}" ]]; then
 	rsync_flags+=(--delete-after)
 fi
@@ -16,14 +16,18 @@ run_sync() {
 		printf '%s does not exist, skipping...\n' "$1"
 		return 0
 	fi
-	retry -- rsync "${rsync_flags[@]}" "$@" || {
+	local -a use_flags=()
+	use_flags+=("${rsync_flags[@]}")
+	[[ -z "${NOEXCLUDE:-}" ]] && use_flags+=(--exclude=".*")
+	echo "rsync ${use_flags[*]} $*"
+	retry -- rsync "${use_flags[@]}" "$@" || {
 		exit_code=1
 	}
 }
 
 case "${ON_OS:-$(on_machine)}" in
 linux*)
-	run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally/.self_types.txt' &
+	NOEXCLUDE=1 run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally/.self_types.txt' &
 	;;
 esac
 
