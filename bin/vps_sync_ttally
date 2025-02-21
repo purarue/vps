@@ -18,18 +18,20 @@ run_sync() {
 	fi
 	local -a use_flags=()
 	use_flags+=("${rsync_flags[@]}")
-	[[ -z "${NOEXCLUDE:-}" ]] && use_flags+=(--exclude=".*")
+
+	local base_name
+	base_name="$(basename -- "$1")"
+
+	if [[ "$base_name" != .* ]]; then
+		use_flags+=(--exclude=".*")
+	fi
 	echo "rsync ${use_flags[*]} $*"
 	retry -- rsync "${use_flags[@]}" "$@" || {
 		exit_code=1
 	}
 }
 
-case "${ON_OS:-$(on_machine)}" in
-linux*)
-	NOEXCLUDE=1 run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally/.self_types.txt' &
-	;;
-esac
+run_sync "$HPIDATA/.self_types.txt" vultr:'~/.ttally/.self_types.txt' &
 
 run_sync "$HPIDATA/reminder-sink-silent.txt" vultr:'~/.ttally/silent.txt' &
 run_sync "$TTALLY_DATA_DIR" vultr:'~/.ttally' &
