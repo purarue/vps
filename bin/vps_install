@@ -172,8 +172,8 @@ cd_or_exit ./frontend
 yarn
 
 cd_or_exit "$PROJECTS"
-yarn # install
-yarn prod-build
+npm install
+npm run prod-build
 pip3 install --user -r ./requirements.txt
 
 cd_or_exit "$MNU_GSHEETS"

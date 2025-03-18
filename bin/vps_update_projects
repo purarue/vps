@@ -5,5 +5,5 @@ cd "${PROJECTS:-$HOME/code/projects}" || exit 1
 
 git stash && git stash drop
 git pull || true
-yarn prod-update
-yarn prod-build && exec yarn prod-server
+npm run prod-update
+npm run prod-build && exec npm run prod-server

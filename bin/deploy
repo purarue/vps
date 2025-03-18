@@ -2,7 +2,7 @@
 
 _deploy_ssh() {
 	# shellcheck disable=SC2029
-	ssh vultr SKIP_LOGS="$SKIP_LOGS" ./vps/bin/vps_deploy "$@"
+	retry -- ssh vultr SKIP_LOGS="$SKIP_LOGS" ./vps/bin/vps_deploy "$@"
 }
 
 deploy() {
