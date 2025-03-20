@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cd ~/.ttally && renv ttally-server-notify -u
