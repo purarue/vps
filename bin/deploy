@@ -41,7 +41,7 @@ deploy() {
 		SKIP_LOGS=1 _deploy_ssh ./.dotfiles - vps_update_dotfiles
 		;;
 	vps)
-		SKIP_LOGS=1 _deploy_ssh ./vps -
+		SKIP_LOGS=1 _deploy_ssh ./vps - vps_update_ttally_repos
 		;;
 	ttally)
 		_deploy_ssh ./vps bgproc 'cd ~/.ttally && renv ttally-server-notify -u'
