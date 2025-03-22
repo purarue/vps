@@ -169,7 +169,7 @@ cd_or_exit ./backend
 ./build
 cd_or_exit "$MY_FEED"
 cd_or_exit ./frontend
-yarn
+npm install
 
 cd_or_exit "$PROJECTS"
 npm install
