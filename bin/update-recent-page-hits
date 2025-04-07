@@ -9,6 +9,8 @@ main() {
 	if is-integer "$count" >/dev/null; then
 		echo "$data" >"$HOME/.cache/recent_page_hits.json"
 	fi
+
+	havecmd refresh-block && refresh-block page-hits
 }
 
 main || exit $?
