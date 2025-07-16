@@ -22,11 +22,15 @@ while [[ -e "${XDG_DOCUMENTS_DIR}/remsync/i/${name}" ]]; do
 	echo 'file already exists, generating new name' >&2
 	name="$(genpasswd -rsym -rnum).${extension}"
 done
+
 # copy to local directory
-cp -p "$image" "${XDG_DOCUMENTS_DIR}/remsync/i/${name}" || {
-	echo "failed to copy $image to ${XDG_DOCUMENTS_DIR}/remsync/i/${name}" >&2
+target="${XDG_DOCUMENTS_DIR}/remsync/i/${name}"
+cp -p "$image" "$target" || {
+	echo "failed to copy ${image} to ${target}" >&2
 	exit 1
 }
+# remove exif tags
+exiftool -all:all= -r "$target"
 remsync || exit 1
 # create URL
 url="https://purarue.xyz/f/i/${name}"
