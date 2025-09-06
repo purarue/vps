@@ -12,7 +12,7 @@ ensure_exists() {
 clone_if_not_exists() {
 	if [[ ! -d "$2" ]]; then
 		git clone "$1" "$2" && {
-			[[ -e "$2/setup.py" ]] && python3 -m pip install "$2"
+			[[ -e "$2/pyproject.toml" || -e "$2/setup.py" ]] && python3 -m pip install "$2"
 		}
 	fi
 	(cd "$2" && {
