@@ -10,9 +10,11 @@
 VPS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "$VPS_DIR" || exit 1
 source "${VPS_DIR}/directories"
-export VPS_DIR
+WHOAMI="$(whoami)" || exit $?
+export VPS_DIR WHOAMI
 
 # load password
+# shellcheck source=./.env
 source "${VPS_DIR}/.env"
 if [[ -z "$SUPERVISOR_PW" ]]; then
 	echo 'Supervisord pw not in .env file' >&2

@@ -91,9 +91,6 @@ VPS_DIR="${THIS_DIR}/.."
 source "${VPS_DIR}/directories"
 declare -rx VPS_DIR
 
-# ssh key for mal-id-cache
-expect_file "${HOME}/.ssh/bot_sean"
-
 mkdir_if_not_exists "$CODE"
 mkdir_if_not_exists "$MID_CACHE"
 # remsync, private and public
@@ -150,7 +147,7 @@ python3.11 -m pip install -U click arrow pytz pyyaml toml requests pipenv virtua
 
 # https://www.digitalocean.com/community/tutorials/how-to-set-up-basic-http-authentication-with-nginx-on-ubuntu-14-04
 if [[ ! -e /etc/nginx/.htpasswd ]]; then
-	sudo htpasswd -c /etc/nginx/.htpasswd sean
+	sudo htpasswd -c /etc/nginx/.htpasswd "$(whoami)"
 fi
 
 cd_or_exit "$DBSENTINEL"

@@ -4,7 +4,7 @@
 # Any additional args are passed to youtube-dl
 # Nginx Block:
 # location /m/ {
-#   alias /home/sean/.ytdl/;  # location
+#   alias /home/user/.ytdl/;  # location
 #
 #   # dont serve directories
 #   try_files $uri =404;
@@ -14,7 +14,7 @@
 ########## CONFIGURATION
 
 # server information
-readonly SYNC_USER="sean"
+readonly SYNC_USER="${oname?:Missing username}"
 readonly SYNC_KEYFILE="${HOME}/.ssh/vultr" # ssh keyfile
 readonly TO_SERVER=140.82.50.43
 readonly BASE_URL="https://purarue.xyz/m"

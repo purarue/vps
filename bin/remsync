@@ -17,7 +17,7 @@
 # rewrite ^/f$ /f/ permanent;
 #
 # location /f/ {
-#   alias /home/sean/f/;  # location
+#   alias /home/user/f/;  # location
 #
 #   # dont serve directories
 #   try_files $uri =404;
@@ -33,7 +33,7 @@
 # rewrite ^/p$ /p/ permanent;
 #
 # location /p/ {
-#   alias /home/sean/p/;  # location
+#   alias /home/user/p/;  # location
 #   try_files $uri $uri/ =404;
 #   autoindex on;
 #   autoindex_exact_size off;
@@ -50,7 +50,7 @@ split() {
 ########## CONFIGURATION
 
 # server information
-readonly SYNC_USER="sean"
+readonly SYNC_USER="${oname?:name not set}"
 readonly SSH_TO='vultr' # setup in ~/.ssh/config
 declare TO_DIR="/home/${SYNC_USER}/f/"
 [[ -n "$REMSYNC_PUBLIC" ]] && TO_DIR="/home/${SYNC_USER}/p/"
