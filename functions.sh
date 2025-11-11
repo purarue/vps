@@ -20,7 +20,7 @@ gb-comments-pretty() {
 }
 # print/select open shortened urls
 # https://github.com/purarue/no-db-shorturl
-alias shorturls="ssh vultr 'ls shorturls'"
+alias shorturls="ssh vultr 'ls shorturls' 2>/dev/null"
 alias shz="shorturls | fzf | sed -e 's|^|https://purarue.xyz/s/|' | tee /dev/tty | clipcopy"
 remsync-html-from-stdin() {
 	local tmpf
