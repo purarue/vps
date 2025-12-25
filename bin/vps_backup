@@ -116,6 +116,7 @@ fd . ~/code/ --type d | xargs -P 5 -I {} find {} -maxdepth 1 -name '.env' | rsyn
 
 expect_dir_and_copy "/etc/netdata"
 expect_dir_and_copy "/etc/nginx"
+expect_dir_and_copy "/etc/caddy/"
 expect_dir_and_copy "$HOME/shorturls"
 expect_dir_and_copy "$CHECKER_MAL/data" checker_mal_data
 expect_dir_and_copy "$GLUE/data/" glue_data
