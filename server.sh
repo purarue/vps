@@ -9,8 +9,8 @@ if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l >/dev/null || {
-	ssh-add ~/.ssh/github
-	ssh-add ~/.ssh/id_rsa
+	ssh-add ~/.ssh/github >/dev/null
+	ssh-add ~/.ssh/id_rsa >/dev/null
 }
 
 # super shell completion
