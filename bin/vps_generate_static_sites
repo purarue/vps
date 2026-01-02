@@ -77,9 +77,9 @@ move_to_document_root "$GEOCITIES/geocities"
 ## BACK-ARROW #############
 
 cd "${BACK_ARROW_DIR}" || exit $?
-yarn install || exit $?
-yarn check || exit $?
-yarn build || exit $?
+npm install || exit $?
+npm run check || exit $?
+npm run build || exit $?
 # move to public so it works with cross origin requests
 mv -v "${BACK_ARROW_DIR}/back-arrow-bundle.js" "${HOME}/p/"
 

@@ -76,8 +76,8 @@ require elixir
 require rsync
 require htpasswd
 require uglifycss
-require yarn
 require go
+require npm
 require cargo
 
 cargo install evry readenv wait-for-internet cargo-update du-dust procs
