@@ -14,7 +14,7 @@
 ########## CONFIGURATION
 
 # server information
-readonly SYNC_USER="${oname?:Missing username}"
+readonly SYNC_USER="${USER?:Missing username}"
 readonly SYNC_KEYFILE="${HOME}/.ssh/vultr" # ssh keyfile
 readonly TO_SERVER=140.82.50.43
 readonly BASE_URL="https://purarue.xyz/m"

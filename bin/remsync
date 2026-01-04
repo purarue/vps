@@ -50,7 +50,7 @@ split() {
 ########## CONFIGURATION
 
 # server information
-readonly SYNC_USER="${oname?:name not set}"
+readonly SYNC_USER="${USER?:name not set}"
 readonly SSH_TO='vultr' # setup in ~/.ssh/config
 declare TO_DIR="/home/${SYNC_USER}/f/"
 [[ -n "$REMSYNC_PUBLIC" ]] && TO_DIR="/home/${SYNC_USER}/p/"
