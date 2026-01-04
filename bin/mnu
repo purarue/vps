@@ -13,9 +13,9 @@ update_remote() {
 
 	cd "$MNU_GSHEETS"
 	git pull
-	python3 -m pipenv install
-	python3 -m pipenv run ./update
-	python3 -m pipenv run ./update export
+	python3.11 -m pipenv install
+	python3.11 -m pipenv run ./update
+	python3.11 -m pipenv run ./update export
 	mkdir -p "$HOME/p/mnu_exports/"
 	# jq to prettify the mnu_export.json file and move it to ~/p/mnu_exports
 	jq . <mnu_export.json >"$HOME/p/mnu_exports/mnu_export.json"
