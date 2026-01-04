@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 # shell functions to source into my laptop environment to interact with my server
 
 alias vultr='retry -- ssh vultr'
@@ -42,3 +42,26 @@ __deploy() {
 }
 
 compdef __deploy deploy
+
+page-hits-tally() {
+	{
+		jq <~/Files/Backups/page_hits_epochs.json '.[]' | dateq parse - | cut -d' ' -f1 | cut -d'-' -f1-2 | tally
+		jq <~/.cache/backup_dir/page_hits_epochs.json '.[]' | dateq parse - | cut -d' ' -f1 | cut -d'-' -f1-2 | tally
+	} | sort -k2,2 | chomp | cycle | awk '{
+			# correct a bunch of rogue requests that month, estimating 350
+			if($1 ~ /^2022-05$/) {
+				print $1, 350
+			} else {
+				print
+			}
+		}'
+}
+
+page-hits-graph() {
+	page-hits-tally | tr ' ' '\t' | termgraph | sort
+}
+
+shared-sync() {
+	local target="${1?:pass file/folder to sync}"
+	rsync -Pavhz "$target" vultr:shared/
+}
