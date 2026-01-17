@@ -77,7 +77,7 @@ move_to_document_root "$GEOCITIES/geocities"
 ## BACK-ARROW #############
 
 cd "${BACK_ARROW_DIR}" || exit $?
-npm install || exit $?
+npm install -D || exit $?
 npm run check || exit $?
 npm run build || exit $?
 # move to public so it works with cross origin requests
