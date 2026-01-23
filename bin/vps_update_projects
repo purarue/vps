@@ -3,7 +3,7 @@
 set -eu
 cd "${PROJECTS:-$HOME/code/projects}" || exit 1
 
-git stash && git stash drop
+git stash && git stash drop || true
 git pull || true
 npm run prod-update
 npm run prod-build && exec npm run prod-server
