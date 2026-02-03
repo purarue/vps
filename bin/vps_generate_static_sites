@@ -139,8 +139,8 @@ set -x
 rm -rf /tmp/error_html
 mkdir -p /tmp/error_html
 darker_errors -output-dir /tmp/error_html 'ERROR_TITLE:purarue - STATUS_MSG' '502:ERROR_HEAD:<meta http-equiv="refresh" content="5">' '502:ERROR_MSG:<p>This page is currently being updated...<br /> This should be fixed in in a few seconds...</p>'
-cp /tmp/error_html/502.html "${DOCUMENT_ROOT}"
 
 # requires me to to mark error_page for each request, see https://github.com/purarue/darker_errors
 cd "$DOCUMENT_ROOT" || exit $?
 darker_errors 'ERROR_TITLE:purarue - STATUS_MSG'
+cp /tmp/error_html/502.html "${DOCUMENT_ROOT}/error_html/502.html"
