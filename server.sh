@@ -44,7 +44,10 @@ export SELF_TYPES_FILE="$SYNC_DIR/.self_types.txt"
 # include pyenv 3.11 bin at the front of the path so calling python/pip/python3 uses that
 export PATH="/usr/sbin:$HOME/.pyenv/versions/3.11.3/bin:$HOME/.pyenv/bin:$HOME/.cargo/bin:$HOME/vps/bin:$HOME/vps:$HOME/.local/bin:$NPM_CONFIG_PREFIX/bin:$GOBIN:$PATH"
 if [[ -e "$HOME/.ttally/repos" ]]; then
-	export PATH="$HOME/.ttally/repos/ttally/bin:$HOME/.ttally/repos/personal/bin:$PATH"
+	export PATH="$HOME/.ttally/repos/ttally/bin:$PATH"
+fi
+if [[ -e "$HOME/repos/personal" ]]; then
+	export PATH="$HOME/repos/personal/bin:$PATH"
 fi
 
 [[ -e "$HOME/.secrets.sh" ]] && . "$HOME/.secrets.sh"

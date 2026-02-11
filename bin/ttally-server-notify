@@ -26,7 +26,6 @@ setup_repos() {
 	mkdir -p "$SYNC_DIR/repos"
 	clone_if_not_exists https://github.com/purarue/ttally "$SYNC_DIR/repos/ttally"
 	clone_if_not_exists https://github.com/purarue/reminder-sink "$SYNC_DIR/repos/reminder-sink"
-	clone_if_not_exists "$HOME/repos/personal" "$SYNC_DIR/repos/personal"
 }
 
 while getopts 'u' opt; do
