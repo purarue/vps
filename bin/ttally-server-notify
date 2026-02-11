@@ -65,7 +65,7 @@ run_notify() {
 
 	cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
-	DUMP_QUERIES=1 ttally-when-queries | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify --expired --filter "$TTALLY_FILTERS" || exit $?
+	ttally-when-queries | ttally-embed-silenced | jq --arg fil "$TTALLY_FILTERS" -c 'select(.name == $fil)' | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify || exit $?
 }
 
 run_notify
