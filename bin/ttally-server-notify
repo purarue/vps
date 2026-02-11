@@ -26,6 +26,13 @@ setup_repos() {
 	mkdir -p "$SYNC_DIR/repos"
 	clone_if_not_exists https://github.com/purarue/ttally "$SYNC_DIR/repos/ttally"
 	clone_if_not_exists https://github.com/purarue/reminder-sink "$SYNC_DIR/repos/reminder-sink"
+	if [[ ! -d "$HOME/code/personal" ]]; then
+		git clone "$HOME/repos/personal" "$HOME/code/personal"
+	else
+		(cd "$HOME/code/personal" && {
+			git pull || true
+		})
+	fi
 }
 
 while getopts 'u' opt; do
@@ -64,7 +71,7 @@ run_notify() {
 
 	cp -auv "$HOME/.dotfiles/.config/ttally.py" "$HOME/.config/ttally.py"
 
-	ttally-when-queries | ttally-embed-silenced | jq --arg fil "$TTALLY_FILTERS" -c 'select(.name == $fil)' | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run - -a notify || exit $?
+	ttally-when-queries | ttally-embed-silenced | jq --arg fil "$TTALLY_FILTERS" -c 'select(.name == $fil)' | TTALLY_LOGLEVEL=DEBUG ttally-send-ntfy run -a notify || exit $?
 }
 
 run_notify
