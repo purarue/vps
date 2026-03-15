@@ -46,8 +46,8 @@ export PATH="/usr/sbin:$HOME/.pyenv/versions/3.11.3/bin:$HOME/.pyenv/bin:$HOME/.
 if [[ -e "$HOME/.ttally/repos" ]]; then
 	export PATH="$HOME/.ttally/repos/ttally/bin:$PATH"
 fi
-if [[ -e "$HOME/repos/personal" ]]; then
-	export PATH="$HOME/repos/personal/bin:$PATH"
+if [[ -e "$HOME/code/personal" ]]; then
+	export PATH="$HOME/code/personal/bin:$PATH"
 fi
 
 [[ -e "$HOME/.secrets.sh" ]] && . "$HOME/.secrets.sh"
