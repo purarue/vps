@@ -9,7 +9,7 @@ if ! command -v optipng &>/dev/null; then
 	exit 1
 fi
 
-cd "$HPIDATA" || exit
+cd "$FILES_DIR" || exit
 
 if [[ ! -d runelite_screenshots ]]; then
 	echo "runelite_screenshots folder not found" >&2
