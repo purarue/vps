@@ -1,6 +1,7 @@
 #!/bin/bash -u
 # Concatenates all the songs in one of my plaintext playlists (https://github.com/purarue/plaintext-playlist)
 # and syncs the one file to my server.
+# TODO: use mp3cat instead of ffmpeg, ffmpeg has weird errors sometimes
 #
 # I often use this to sync a playlist Im listening to before leaving the house
 # so I can listen to it on my phone.
@@ -57,7 +58,7 @@ done <"$PLAYLIST_RAW"
 set -e
 
 # use PLAYLIST_TXT to combine all the mp3's together
-ffmpeg -hide_banner -f concat -safe 0 -i "$PLAYLIST_TXT" -c copy "$PLAYLIST_MP3"
+echo ffmpeg -hide_banner -f concat -safe 0 -i "$PLAYLIST_TXT" -c:a aac "$PLAYLIST_MP3"
 
 # cd to this directory
 cd "$VPS_DIR"
