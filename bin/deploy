@@ -22,6 +22,8 @@ deploy() {
 	checker-mal)
 		_deploy_ssh ./code/checker_mal checker-mal-server
 		;;
+	movie_list)
+		_deploy_ssh ./code/movie_list movie_list 'cd ~/code/movie_list && go build ./cmd/movie_list'
 	feed)
 		_deploy_ssh ./code/my_feed feed-frontend,feed-backend
 		;;
