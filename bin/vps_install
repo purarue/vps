@@ -113,14 +113,12 @@ clone_if_not_exists "git@github.com:purarue/projects.git" "$PROJECTS"
 clone_if_not_exists "git@github.com:purarue/my_feed.git" "$MY_FEED"
 clone_if_not_exists "git@github.com:purarue/dbsentinel.git" "$DBSENTINEL"
 clone_if_not_exists "git@github.com:purarue/currently_listening.git" "$CURRENTLY_LISTENING"
-clone_if_not_exists "git@github.com:purarue/filmswap.git" "$FILMSWAP"
 
 expect_file "$NOTIFY_BOT/token.yaml"
 expect_file "$NOTIFY_BOT/old"
 expect_file "$COUNTDOWN_BOT/token.yaml"
 expect_file "${HOME}/.discord_web_hook.txt"
 expect_file "${MNU_GSHEETS}/client_secret.json"
-expect_file "${FILMSWAP}/.env"
 
 set -u
 
@@ -137,7 +135,6 @@ mkdir_if_not_exists "$MY_FEED_LOGS"
 mkdir_if_not_exists "$CLIPBOARD_LOGS"
 mkdir_if_not_exists "$DBSENTINEL_LOGS"
 mkdir_if_not_exists "$CURRENTLY_LOGS"
-mkdir_if_not_exists "$FILMSWAP_LOGS"
 mkdir_if_not_exists "$TRACK_LOGS"
 
 set +u
@@ -153,10 +150,6 @@ fi
 cd_or_exit "$DBSENTINEL"
 python3.11 -m virtualenv -p python3.10 .venv
 ./scripts/in_venv pip install -r requirements.txt
-
-cd_or_exit "$FILMSWAP"
-python3 -m virtualenv .venv -p "$(which python3.11)"
-./.venv/bin/pip install -r requirements.txt
 
 cd_or_exit "$CURRENTLY_LISTENING"
 make
